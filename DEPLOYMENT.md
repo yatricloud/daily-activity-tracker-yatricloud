@@ -4,7 +4,7 @@ This guide will help you deploy your Daily Activity Tracker application on AWS E
 
 ## 📋 Prerequisites
 
-- AWS EC2 instance running wxadmin 20.04 or later
+- AWS EC2 instance running ubuntu 20.04 or later
 - EC2 instance with at least 1GB RAM and 10GB storage
 - Security group configured to allow HTTP (80), HTTPS (443), and SSH (22)
 - Domain name (optional, for SSL)
@@ -12,14 +12,14 @@ This guide will help you deploy your Daily Activity Tracker application on AWS E
 ## 🖥️ Step 1: Launch EC2 Instance
 
 1. **Launch EC2 Instance:**
-   - AMI: wxadmin Server 20.04 LTS (HVM)
+   - AMI: ubuntu Server 20.04 LTS (HVM)
    - Instance Type: t2.micro (free tier) or t3.small
    - Storage: 10GB GP2
    - Security Group: Allow SSH (22), HTTP (80), HTTPS (443)
 
 2. **Connect to your instance:**
    ```bash
-   ssh -i your-key.pem wxadmin@your-ec2-public-ip
+   ssh -i your-key.pem ubuntu@your-ec2-public-ip
    ```
 
 ## ⚙️ Step 2: Server Setup
@@ -44,17 +44,17 @@ This guide will help you deploy your Daily Activity Tracker application on AWS E
 1. **Upload your application:**
    ```bash
    # From your local machine, upload the project
-   scp -r -i your-key.pem ./daily-activity-tracker wxadmin@your-ec2-public-ip:/home/wxadmin/
+   scp -r -i your-key.pem ./daily-activity-tracker ubuntu@your-ec2-public-ip:/home/ubuntu/
    ```
 
 2. **SSH into your EC2 instance:**
    ```bash
-   ssh -i your-key.pem wxadmin@your-ec2-public-ip
+   ssh -i your-key.pem ubuntu@your-ec2-public-ip
    ```
 
 3. **Navigate to the application directory:**
    ```bash
-   cd /home/wxadmin/daily-activity-tracker
+   cd /home/ubuntu/daily-activity-tracker
    ```
 
 4. **Install dependencies:**

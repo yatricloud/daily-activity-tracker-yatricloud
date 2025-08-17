@@ -1,19 +1,19 @@
 # 🚀 Quick Deployment Checklist
 
 ## ✅ Pre-Deployment
-- [ ] AWS EC2 instance launched (wxadmin 20.04+)
+- [ ] AWS EC2 instance launched (ubuntu 20.04+)
 - [ ] Security group allows ports 22, 80, 443
 - [ ] SSH key pair created and downloaded
 - [ ] Domain name configured (optional)
 
 ## 🔧 Server Setup
-- [ ] SSH into EC2: `ssh -i key.pem wxadmin@your-ip`
+- [ ] SSH into EC2: `ssh -i key.pem ubuntu@your-ip`
 - [ ] Upload `ec2-setup.sh` to EC2
 - [ ] Run: `chmod +x ec2-setup.sh && ./ec2-setup.sh`
 - [ ] Verify Node.js, PM2, Nginx installed
 
 ## 📦 Application Deployment
-- [ ] Upload project: `scp -r ./daily-activity-tracker wxadmin@your-ip:/home/wxadmin/`
+- [ ] Upload project: `scp -r ./daily-activity-tracker ubuntu@your-ip:/home/ubuntu/`
 - [ ] SSH into EC2 and navigate to project directory
 - [ ] Install dependencies: `npm install --production`
 - [ ] Copy environment file: `cp env.production .env.production`

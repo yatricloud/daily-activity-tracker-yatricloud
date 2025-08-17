@@ -25,8 +25,8 @@ sudo apt install certbot python3-certbot-nginx -y
 
 # Create application directory
 echo "📁 Creating application directory..."
-sudo mkdir -p /home/wxadmin/daily-activity-tracker
-sudo chown wxadmin:wxadmin /home/wxadmin/daily-activity-tracker
+sudo mkdir -p /home/ubuntu/daily-activity-tracker
+sudo chown ubuntu:ubuntu /home/ubuntu/daily-activity-tracker
 
 # Configure Nginx
 echo "⚙️ Configuring Nginx..."
@@ -69,5 +69,5 @@ sudo ufw --force enable
 
 echo "✅ EC2 setup completed successfully!"
 echo "🌐 Nginx is configured and running"
-echo "📁 Application directory: /home/wxadmin/daily-activity-tracker"
+echo "📁 Application directory: /home/ubuntu/yatri-3-tier-application"
 echo "🚀 Ready to deploy your application!"

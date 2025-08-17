@@ -3,7 +3,7 @@ module.exports = {
     {
       name: 'daily-activity-tracker',
       script: './start.sh',
-      cwd: '/home/ubuntu/daily-activity-tracker',
+      cwd: '/home/ubuntu/workspace/yatri-3-tier-application',
       instances: 1,
       autorestart: true,
       watch: false,
@@ -12,9 +12,9 @@ module.exports = {
         NODE_ENV: 'production',
         PORT: 3000
       },
-      error_file: '/home/ubuntu/daily-activity-tracker/logs/err.log',
-      out_file: '/home/ubuntu/daily-activity-tracker/logs/out.log',
-      log_file: '/home/ubuntu/daily-activity-tracker/logs/combined.log',
+      error_file: '/home/ubuntu/workspace/yatri-3-tier-application/logs/err.log',
+      out_file: '/home/ubuntu/workspace/yatri-3-tier-application/logs/out.log',
+      log_file: '/home/ubuntu/workspace/yatri-3-tier-application/logs/combined.log',
       time: true
     }
   ]
