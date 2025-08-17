@@ -25,25 +25,18 @@ A modern, full-stack web application for tracking and analyzing daily activities
 - **Row Level Security** - Data protection
 - **Real-time subscriptions** - Live updates
 
-### Deployment & DevOps
-- **PM2** - Process manager for Node.js
-- **Nginx** - Reverse proxy and web server
-- **EC2** - Cloud infrastructure
-- **Git** - Version control
-
 ## 📋 Prerequisites
 
 - Node.js 18.x or higher
 - npm or yarn package manager
 - Supabase account and project
-- Ubuntu 20.04+ server (for production)
 
 ## 🛠️ Installation
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Nency-Ravaliya/yatri-3-tier-application.git
-cd yatri-3-tier-application
+git clone https://github.com/yatricloud/daily-activity-tracker-yatricloud.git
+cd daily-activity-tracker-yatricloud
 ```
 
 ### 2. Install Dependencies
@@ -72,7 +65,7 @@ npm start
 ## 🏗️ Project Structure
 
 ```
-yatri-3-tier-application/
+daily-activity-tracker-yatricloud/
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── activities/         # Activity management pages
@@ -86,43 +79,7 @@ yatri-3-tier-application/
 │   ├── context/                # React context
 │   └── lib/                    # Utility functions
 ├── public/                     # Static assets
-├── deploy.sh                   # Deployment script
-├── ec2-setup.sh               # EC2 setup script
-├── ecosystem.config.js         # PM2 configuration
-├── start.sh                    # Application startup script
 └── package.json                # Dependencies and scripts
-```
-
-## 🚀 Deployment
-
-### Quick Deployment
-```bash
-# Make scripts executable
-chmod +x *.sh
-
-# Deploy with PM2
-./deploy.sh
-```
-
-### Manual Deployment
-```bash
-# Build the application
-npm run build
-
-# Start with PM2
-pm2 start ecosystem.config.js
-
-# Save PM2 configuration
-pm2 save
-
-# Setup startup script
-pm2 startup
-```
-
-### EC2 Setup
-```bash
-# Run EC2 setup script
-./ec2-setup.sh
 ```
 
 ## 📊 Available Scripts
@@ -131,24 +88,6 @@ pm2 startup
 - `npm run build` - Build for production
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
-- `./deploy.sh` - Deploy with PM2
-- `./ec2-setup.sh` - Setup EC2 instance
-
-## 🔧 Configuration
-
-### PM2 Configuration
-The application uses PM2 for process management with:
-- Auto-restart on crashes
-- Memory limit: 1GB
-- Log rotation
-- Process monitoring
-
-### Nginx Configuration
-Nginx serves as a reverse proxy:
-- Port 80 (HTTP)
-- Proxies to localhost:3000
-- WebSocket support
-- Static file serving
 
 ## 📱 API Endpoints
 
@@ -198,7 +137,6 @@ activities (
 - **Row Level Security** - Data isolation per user
 - **JWT Authentication** - Secure token-based auth
 - **Input Validation** - XSS and injection protection
-- **HTTPS Support** - Encrypted data transmission
 - **Environment Variables** - Secure configuration
 
 ## 📈 Performance
@@ -236,10 +174,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🤝 Support
 
-- **Documentation**: [DEPLOYMENT.md](DEPLOYMENT.md)
-- **Deployment Guide**: [DEPLOYMENT_CHECKLIST.md](DEPLOYMENT_CHECKLIST.md)
-- **Issues**: [GitHub Issues](https://github.com/Nency-Ravaliya/yatri-3-tier-application/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Nency-Ravaliya/yatri-3-tier-application/discussions)
+- **Issues**: [GitHub Issues](https://github.com/yatricloud/daily-activity-tracker-yatricloud/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/yatricloud/daily-activity-tracker-yatricloud/discussions)
 
 ## 🙏 Acknowledgments
 
@@ -251,3 +187,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Made with ❤️ by Nency Ravaliya**
+
+**© 2025 Yatri Cloud. Designed by Uimitra**
