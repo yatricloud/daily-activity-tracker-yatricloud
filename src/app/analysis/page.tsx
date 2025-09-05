@@ -46,12 +46,17 @@ export default function AnalysisPage() {
   const fetchActivities = async () => {
     setLoading(true);
     setError("");
-    const { data, error } = await supabase
-      .from("activities")
-      .select("*")
-      .eq("user_id", user?.id);
-    if (error) setError(error.message);
-    else setActivities(data || []);
+    try {
+      const { data, error } = await supabase
+        .from("activities")
+        .select("*")
+        .eq("user_id", user?.id);
+      if (error) setError(error.message);
+      else setActivities(data || []);
+    } catch (err) {
+      console.error('Error fetching activities:', err);
+      setError("Failed to fetch activities");
+    }
     setLoading(false);
   };
 

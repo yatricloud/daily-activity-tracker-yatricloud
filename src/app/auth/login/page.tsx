@@ -14,10 +14,15 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) setError(error.message);
+      else router.push("/");
+    } catch (err) {
+      console.error('Error logging in:', err);
+      setError("Failed to login");
+    }
     setLoading(false);
-    if (error) setError(error.message);
-    else router.push("/");
   };
 
   return (

@@ -16,10 +16,40 @@ export default function SignupPage() {
     setLoading(true);
     setError("");
     setSuccess("");
-    const { error } = await supabase.auth.signUp({ email, password });
+    
+    if (!supabase) {
+      setError("Supabase client not initialized. Please refresh the page.");
+      setLoading(false);
+      return;
+    }
+    
+    try {
+      console.log('Attempting to sign up with:', { email, password: '***' });
+      console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+      
+      const { data, error } = await supabase.auth.signUp({ 
+        email, 
+        password,
+        options: {
+          emailRedirectTo: `${window.location.origin}/auth/login`
+        }
+      });
+      
+      console.log('Signup response:', { data, error });
+      
+      if (error) {
+        console.error('Signup error:', error);
+        setError(error.message);
+      } else {
+        console.log('Signup successful:', data);
+        setSuccess("Check your email for verification link!");
+        // Don't redirect immediately, let user see the success message
+      }
+    } catch (err) {
+      console.error('Error signing up:', err);
+      setError("Failed to sign up. Please check your internet connection and try again.");
+    }
     setLoading(false);
-    if (error) setError(error.message);
-    else router.push("/");
   };
 
   return (

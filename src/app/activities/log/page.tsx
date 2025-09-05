@@ -25,16 +25,21 @@ export default function LogActivityPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
-    const { error } = await supabase.from("activities").insert({
-      user_id: user.id,
-      name,
-      category,
-      duration: Number(duration),
-      date,
-    });
+    try {
+      const { error } = await supabase.from("activities").insert({
+        user_id: user.id,
+        name,
+        category,
+        duration: Number(duration),
+        date,
+      });
+      if (error) setError(error.message);
+      else router.push("/");
+    } catch (err) {
+      console.error('Error saving activity:', err);
+      setError("Failed to save activity");
+    }
     setLoading(false);
-    if (error) setError(error.message);
-    else router.push("/");
   };
 
   return (

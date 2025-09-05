@@ -34,23 +34,33 @@ export default function ActivitiesPage() {
   const fetchActivities = async () => {
     setLoading(true);
     setError("");
-    const { data, error } = await supabase
-      .from("activities")
-      .select("*")
-      .eq("user_id", user?.id)
-      .order("date", { ascending: false });
-    if (error) setError(error.message);
-    else setActivities(data || []);
+    try {
+      const { data, error } = await supabase
+        .from("activities")
+        .select("*")
+        .eq("user_id", user?.id)
+        .order("date", { ascending: false });
+      if (error) setError(error.message);
+      else setActivities(data || []);
+    } catch (err) {
+      console.error('Error fetching activities:', err);
+      setError("Failed to fetch activities");
+    }
     setLoading(false);
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this activity?")) return;
-    const { error } = await supabase.from("activities").delete().eq("id", id);
-    if (error) setError(error.message);
-    else {
-      fetchActivities();
-      router.push("/");
+    try {
+      const { error } = await supabase.from("activities").delete().eq("id", id);
+      if (error) setError(error.message);
+      else {
+        fetchActivities();
+        router.push("/");
+      }
+    } catch (err) {
+      console.error('Error deleting activity:', err);
+      setError("Failed to delete activity");
     }
   };
 
@@ -65,20 +75,25 @@ export default function ActivitiesPage() {
 
   const handleEditSave = async () => {
     if (!editId) return;
-    const { error } = await supabase
-      .from("activities")
-      .update({
-        name: editData.name,
-        category: editData.category,
-        duration: Number(editData.duration),
-        date: editData.date,
-      })
-      .eq("id", editId);
-    if (error) setError(error.message);
-    else {
-      setEditId(null);
-      fetchActivities();
-      router.push("/");
+    try {
+      const { error } = await supabase
+        .from("activities")
+        .update({
+          name: editData.name,
+          category: editData.category,
+          duration: Number(editData.duration),
+          date: editData.date,
+        })
+        .eq("id", editId);
+      if (error) setError(error.message);
+      else {
+        setEditId(null);
+        fetchActivities();
+        router.push("/");
+      }
+    } catch (err) {
+      console.error('Error updating activity:', err);
+      setError("Failed to update activity");
     }
   };
 

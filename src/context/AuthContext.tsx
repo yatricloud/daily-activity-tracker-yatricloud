@@ -18,22 +18,31 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!supabase) {
+      console.error('Supabase client not initialized');
+      setLoading(false);
+      return;
+    }
+
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
     });
+    
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
       setUser(data.session?.user ?? null);
       setLoading(false);
     });
+    
     return () => {
       listener.subscription.unsubscribe();
     };
   }, []);
 
   const logout = async () => {
+    if (!supabase) return;
     await supabase.auth.signOut();
     setUser(null);
     setSession(null);
