@@ -110,7 +110,7 @@ daily-activity-tracker-yatricloud/
 
 ### Users Table
 ```sql
-users (
+create table users (
   id uuid primary key,
   email text unique,
   created_at timestamp,
@@ -120,7 +120,7 @@ users (
 
 ### Activities Table
 ```sql
-activities (
+create table activities (
   id uuid primary key,
   user_id uuid references users(id),
   title text,
