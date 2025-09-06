@@ -1,10 +1,8 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
 export default function SignupPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,27 +14,24 @@ export default function SignupPage() {
     setLoading(true);
     setError("");
     setSuccess("");
-    
+
     if (!supabase) {
       setError("Supabase client not initialized. Please refresh the page.");
       setLoading(false);
       return;
     }
-    
+
     try {
       console.log('Attempting to sign up with:', { email, password: '***' });
       console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
-      
-      const { data, error } = await supabase.auth.signUp({ 
-        email, 
-        password,
-        options: {
-          emailRedirectTo: `${window.location.origin}/auth/login`
-        }
+
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password
       });
-      
+
       console.log('Signup response:', { data, error });
-      
+
       if (error) {
         console.error('Signup error:', error);
         setError(error.message);

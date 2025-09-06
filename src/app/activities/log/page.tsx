@@ -25,6 +25,13 @@ export default function LogActivityPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!supabase) {
+      setError("Supabase client not initialized. Please refresh the page.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const { error } = await supabase.from("activities").insert({
         user_id: user.id,

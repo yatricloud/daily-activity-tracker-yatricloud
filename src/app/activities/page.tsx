@@ -34,6 +34,13 @@ export default function ActivitiesPage() {
   const fetchActivities = async () => {
     setLoading(true);
     setError("");
+
+    if (!supabase) {
+      setError("Supabase client not initialized. Please refresh the page.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from("activities")
@@ -51,6 +58,12 @@ export default function ActivitiesPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this activity?")) return;
+
+    if (!supabase) {
+      setError("Supabase client not initialized. Please refresh the page.");
+      return;
+    }
+
     try {
       const { error } = await supabase.from("activities").delete().eq("id", id);
       if (error) setError(error.message);
@@ -75,6 +88,12 @@ export default function ActivitiesPage() {
 
   const handleEditSave = async () => {
     if (!editId) return;
+
+    if (!supabase) {
+      setError("Supabase client not initialized. Please refresh the page.");
+      return;
+    }
+
     try {
       const { error } = await supabase
         .from("activities")

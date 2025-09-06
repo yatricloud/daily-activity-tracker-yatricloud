@@ -14,6 +14,13 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     setError("");
+
+    if (!supabase) {
+      setError("Supabase client not initialized. Please refresh the page.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) setError(error.message);

@@ -46,6 +46,13 @@ export default function AnalysisPage() {
   const fetchActivities = async () => {
     setLoading(true);
     setError("");
+
+    if (!supabase) {
+      setError("Supabase client not initialized. Please refresh the page.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from("activities")
